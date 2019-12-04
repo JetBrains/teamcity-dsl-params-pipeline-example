@@ -35,7 +35,7 @@ project {
     buildType(Test)
 
     sequential {
-        buildType(Build) { produces(DslContext.getParameter("artifactPath")) }
+        buildType(Build)
         buildType(Test, options = { runOnSameAgent = true })
     }
 }
@@ -59,6 +59,7 @@ object Test : BuildType({
     name = "Test"
 
     buildNumberPattern = "${Build.depParamRefs.buildNumber}"
+    artifactRules = DslContext.getParameter("artifactPath")
 
     vcs {
         root(Sources)
