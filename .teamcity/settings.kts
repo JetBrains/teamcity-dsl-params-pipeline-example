@@ -43,6 +43,8 @@ project {
 object Build : BuildType({
     name = "Build"
 
+    artifactRules = DslContext.getParameter("artifactPath")
+
     vcs {
         root(Sources)
     }
@@ -57,9 +59,7 @@ object Build : BuildType({
 
 object Test : BuildType({
     name = "Test"
-
     buildNumberPattern = "${Build.depParamRefs.buildNumber}"
-    artifactRules = DslContext.getParameter("artifactPath")
 
     vcs {
         root(Sources)
